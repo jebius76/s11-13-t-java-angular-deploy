@@ -63,6 +63,20 @@ public class MainSecurity extends WebSecurityConfigurerAdapter {
 		return super.authenticationManager();
 	}
 
+	@Bean
+	CorsConfigurationSource corsConfigurationSource()
+	{
+		CorsConfiguration configuration = new CorsConfiguration();
+		configuration.setAllowedOriginPatterns(List.of("http://localhost:3000", "http://localhost:4200"));
+		configuration.setAllowedMethods(List.of("GET", "POST", "OPTIONS", "DELETE", "PUT", "PATCH"));
+		configuration.setAllowedHeaders(List.of("Access-Control-Allow-Origin", "X-Requested-With", "Origin", "Content-Type", "Accept", "Authorization"));
+		configuration.setAllowCredentials(true);
+		UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+		source.registerCorsConfiguration("/**", configuration);
+		return source;
+	}
+
+
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		//Desactivamos cookies ya que enviamos un token
