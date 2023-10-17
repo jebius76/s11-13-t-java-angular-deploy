@@ -3,6 +3,7 @@ package com.noCountry13.Iot.security.controller;
 import com.noCountry13.Iot.security.dto.JwtDto;
 import com.noCountry13.Iot.security.dto.LoginUsuario;
 import com.noCountry13.Iot.security.dto.NuevoUsuario;
+import com.noCountry13.Iot.security.dto.RefreshTokenDto;
 import com.noCountry13.Iot.security.entity.Rol;
 import com.noCountry13.Iot.security.entity.Usuario;
 import com.noCountry13.Iot.security.enums.RolNombre;
@@ -77,5 +78,15 @@ public class AuthController {
 		UserDetails userDetails = (UserDetails) authentication.getPrincipal();
 		JwtDto jwtDto = new JwtDto(jwt, userDetails.getUsername(), userDetails.getAuthorities());
 		return new ResponseEntity<>(jwtDto, HttpStatus.OK);
+	}
+	@GetMapping("/refresh-token")
+	public ResponseEntity<RefreshTokenDto> refreshToken(@RequestHeader("Authorization") String token){
+
+		RefreshTokenDto jwt = jwtProvider.refreshToken(token);
+		if(jwt==null){
+
+			return new ResponseEntity(new Mensaje("token invalido"),HttpStatus.BAD_REQUEST);
+		}
+		return new ResponseEntity(jwt,HttpStatus.OK);
 	}
 }

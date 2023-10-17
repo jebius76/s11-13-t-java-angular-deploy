@@ -1,6 +1,7 @@
 package com.noCountry13.Iot.security.jwt;
 
 
+import com.noCountry13.Iot.security.dto.RefreshTokenDto;
 import com.noCountry13.Iot.security.entity.UsuarioMain;
 import io.jsonwebtoken.*;
 import org.slf4j.Logger;
@@ -10,6 +11,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Component;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * Clase que genera el token y valida que este bien formado y no este expirado
@@ -37,8 +39,38 @@ public class JwtProvider {
         return Jwts.builder().setSubject(usuarioMain.getUsername())
                 .setIssuedAt(new Date())
                 .setExpiration(new Date(new Date().getTime() + expiration * 1000))
+                .claim("rol", usuarioMain.getAuthorities())
                 .signWith(SignatureAlgorithm.HS256, secret)
                 .compact();
+    }
+    public RefreshTokenDto refreshToken(String token) {
+        var tokenJwt = token.replace("Bearer ", "");
+        try {
+            Claims claims = Jwts.parser()
+                    .setSigningKey(secret)
+                    .parseClaimsJws(tokenJwt)
+                    .getBody();
+
+            // Obtén el nombre de usuario del token actual
+            String username = claims.getSubject();
+            var roles = claims.get("rol", List.class);  // Obtiene las reclamaciones de autoridad
+            var rol = roles.get(0);
+            // Genera un nuevo token con la misma información, incluyendo las reclamaciones de autoridad
+            String refreshedToken = Jwts.builder()
+                    .setSubject(username)
+                    .setIssuedAt(new Date())
+                    .setExpiration(new Date(System.currentTimeMillis() + expiration * 1000))
+                    .claim("rol", roles)
+                    .signWith(SignatureAlgorithm.HS256, secret)
+                    .compact();
+
+            RefreshTokenDto refreshTokenDto = new RefreshTokenDto(refreshedToken, username, rol);
+            return refreshTokenDto;
+        } catch (JwtException e) {
+            // Maneja excepciones si el token no es válido
+            logger.error("Error al refrescar el token: " + e.getMessage());
+            return null; // Devuelve null en caso de error
+        }
     }
 
     //subject --> Nombre del usuario

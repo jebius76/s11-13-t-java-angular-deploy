@@ -81,7 +81,6 @@ public class MainSecurity extends WebSecurityConfigurerAdapter {
 		return source;
 	}
 
-
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		//Desactivamos cookies ya que enviamos un token
