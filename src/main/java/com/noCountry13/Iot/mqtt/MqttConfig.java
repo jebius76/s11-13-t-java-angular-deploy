@@ -11,6 +11,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.Arrays;
 
 @Configuration
@@ -54,7 +55,7 @@ public class MqttConfig {
                 if (!s.startsWith("NC/DATA/")) return;
 
                 Iot iot = new Iot();
-                iot.setDate(LocalDateTime.now());
+                iot.setDate(LocalDateTime.now().atZone(ZoneId.of("America/Argentina/Buenos_Aires")).toLocalDateTime());
                 iot.setTopic(s);
                 iot.setPayload(new String(mqttMessage.getPayload()));
                 ioTService.save(iot);
