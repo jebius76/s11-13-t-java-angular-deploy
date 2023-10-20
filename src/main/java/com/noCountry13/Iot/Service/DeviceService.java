@@ -1,7 +1,7 @@
 package com.noCountry13.Iot.Service;
 
 import com.noCountry13.Iot.Model.Entity.Device;
-import com.noCountry13.Iot.Model.Entity.Dto.Device.DeviceDto;
+import com.noCountry13.Iot.Model.Entity.Dto.DeviceDto;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

@@ -16,10 +16,14 @@ public class IoTServiceImpl implements IoTService {
     @Autowired
     private IotRepository iotRepository;
 
-
     @Override
     @Transactional(readOnly = true)
     public List<Iot> listAllItems() {
         return iotRepository.findAll();
+    }
+
+    @Override
+    public Iot save(Iot iot) {
+        return iotRepository.save(iot);
     }
 }

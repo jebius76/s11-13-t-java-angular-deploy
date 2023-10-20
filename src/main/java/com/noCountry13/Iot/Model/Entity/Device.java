@@ -1,6 +1,6 @@
 package com.noCountry13.Iot.Model.Entity;
 
-import com.noCountry13.Iot.Enums.DevType;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -32,8 +32,9 @@ public class Device {
     /**
      * Tipo de dispositivo (enum DevType).
      */
-    @Enumerated(EnumType.STRING)
-    private DevType type;
+    @ManyToOne
+    @JoinColumn(name = "devType_id")
+    private DevType devType;
     /**
      * Descripción del dispositivo.
      */

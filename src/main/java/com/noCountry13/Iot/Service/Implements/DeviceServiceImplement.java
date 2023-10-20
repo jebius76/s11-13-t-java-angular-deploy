@@ -1,7 +1,7 @@
 package com.noCountry13.Iot.Service.Implements;
 
 import com.noCountry13.Iot.Model.Entity.Device;
-import com.noCountry13.Iot.Model.Entity.Dto.Device.DeviceDto;
+import com.noCountry13.Iot.Model.Entity.Dto.DeviceDto;
 import com.noCountry13.Iot.Repository.DeviceRepository;
 import com.noCountry13.Iot.Service.DeviceService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,7 +33,7 @@ public class DeviceServiceImplement implements DeviceService {
         Device newDevice = new Device();
         newDevice.setBrand(devicedTO.getBrand());
         newDevice.setSn(devicedTO.getSn());
-        newDevice.setType(devicedTO.getType());
+        newDevice.setDevType(devicedTO.getType());
         newDevice.setDescription(devicedTO.getDescription());
         newDevice.setSubtopic(devicedTO.getSubtopic());
         newDevice.setMqttClient(devicedTO.getSubtopic());
@@ -60,7 +60,7 @@ public class DeviceServiceImplement implements DeviceService {
                 .orElseThrow(() -> new IllegalStateException("No se encontró el dispositivo con ID " + id));
 
         device.setBrand(devicedto.getBrand());
-        device.setType(devicedto.getType());
+        device.setDevType(devicedto.getType());
         device.setDescription(devicedto.getDescription());
         device.setUnit(devicedto.getUnit());
 

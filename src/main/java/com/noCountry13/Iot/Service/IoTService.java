@@ -13,4 +13,7 @@ public interface IoTService {
 
 
     public List<Iot> listAllItems();
+
+    public Iot save(Iot iot);
+
 }

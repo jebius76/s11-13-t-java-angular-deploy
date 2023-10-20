@@ -1,7 +1,7 @@
 package com.noCountry13.Iot.Controller;
 
 import com.noCountry13.Iot.Model.Entity.Device;
-import com.noCountry13.Iot.Model.Entity.Dto.Device.EnvironmentDto;
+import com.noCountry13.Iot.Model.Entity.Dto.EnvironmentDto;
 import com.noCountry13.Iot.Model.Entity.Environment;
 import com.noCountry13.Iot.Service.Implements.EnvironmentServiceImplement;
 import com.noCountry13.Iot.security.util.Mensaje;
