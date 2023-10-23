@@ -1,4 +1,4 @@
-package com.noCountry13.Iot.Controller;
+package com.noCountry13.Iot.controller;
 
 import com.noCountry13.Iot.Model.Entity.DevType;
 import com.noCountry13.Iot.Model.Entity.Dto.DevTypeDto;
