@@ -35,7 +35,7 @@ public class Environment {
      * Listado de dispositivos que estan en el ambiente
      */
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name = "device_id")
+    @JoinColumn(name = "environment_id")
     private List<Device> devices;
 
     public Environment(String name, String description, String subTopic) {
