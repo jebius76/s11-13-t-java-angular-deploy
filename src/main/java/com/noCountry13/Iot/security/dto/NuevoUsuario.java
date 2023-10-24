@@ -15,6 +15,16 @@ public class NuevoUsuario {
 	@NotBlank
 	private String password;
 
+	private String topic;
+
+	public String getTopic() {
+		return topic;
+	}
+
+	public void setTopic(String topic) {
+		this.topic = topic;
+	}
+
 	private Set<String> roles = new HashSet<>();
 
 	public String getName() {
