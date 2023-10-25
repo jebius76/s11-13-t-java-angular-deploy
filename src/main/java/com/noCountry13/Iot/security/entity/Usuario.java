@@ -1,11 +1,8 @@
 package com.noCountry13.Iot.security.entity;
 
-import com.noCountry13.Iot.Model.Entity.House;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -27,10 +24,6 @@ public class Usuario {
 		private String email;
 		@NotNull
 		private String password;
-		private String topic;
-		@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-		@JoinColumn(name = "client_id")
-		private List<House> houses;
 
 		@NotNull
 		//Relación many to many
@@ -51,30 +44,11 @@ public class Usuario {
 		public Usuario(@NotNull String nombre,
 					   @NotNull String nombreUsuario,
 					   @NotNull String email,
-					   @NotNull String password,
-					   String topic) {
+					   @NotNull String password) {
 			this.nombre = nombre;
 			this.nombreUsuario = nombreUsuario;
 			this.email = email;
 			this.password = password;
-			this.topic = topic;
-		}
-
-
-	public List<House> getHouses() {
-		return houses;
-	}
-
-	public void setHouses(List<House> houses) {
-		this.houses = houses;
-	}
-
-	public String getTopic() {
-			return topic;
-		}
-
-		public void setTopic(String topic) {
-			this.topic = topic;
 		}
 
 		public int getIdUsuario() {
