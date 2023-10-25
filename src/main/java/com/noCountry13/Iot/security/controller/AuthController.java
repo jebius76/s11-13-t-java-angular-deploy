@@ -25,6 +25,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @RestController
@@ -55,7 +56,7 @@ public class AuthController {
 		}
 
 		Usuario usuario = new Usuario(nuevoUsuario.getName(), nuevoUsuario.getNameUser(),
-				nuevoUsuario.getEmail(), passwordEncoder.encode(nuevoUsuario.getPassword()));
+				nuevoUsuario.getEmail(), passwordEncoder.encode(nuevoUsuario.getPassword()), nuevoUsuario.getTopic());
 
 		Set<Rol> roles = new HashSet<>();
 		roles.add(rolService.getByRolNombre(RolNombre.ROLE_USER).orElseThrow());
@@ -89,4 +90,12 @@ public class AuthController {
 		}
 		return new ResponseEntity(jwt,HttpStatus.OK);
 	}
+
+	@GetMapping("/client")
+	public Usuario findByClientId(){
+
+		return usuarioService.getByUsuario(jwtProvider.getAuthUserName()).get();
+
+	}
+
 }
