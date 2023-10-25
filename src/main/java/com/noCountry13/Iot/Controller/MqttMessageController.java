@@ -7,6 +7,7 @@ import com.noCountry13.Iot.mqtt.MqttClientExt;
 import com.noCountry13.Iot.Model.Entity.Dto.PublishMessageDTO;
 import com.noCountry13.Iot.mqtt.MqttService;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.Tag;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -27,7 +28,7 @@ import java.util.concurrent.TimeUnit;
 @RestController
 @RequestMapping("/api/v1")
 @AllArgsConstructor
-@Api(tags = "Mqtt Device Controller", description = "Permite la interaccion del front end con los dispositivos IoT")
+@Api(tags = "MQTT Controller", description = "Permite la interaccion del front end con los dispositivos IoT")
 public class MqttMessageController {
 
     @Autowired
@@ -42,10 +43,7 @@ public class MqttMessageController {
     @Autowired
     private Environment env;
 
-    @Operation(summary = "Se utiliza para enviar mensajes mqtt a los dispositivos",
-            description = "<p>Solo accesible para administradores.</p>"
-    )
-
+    @ApiOperation(value = "Se utiliza para enviar mensajes mqtt a los dispositivos", httpMethod = "POST")
     @PostMapping("/mqtt")
     public ResponseEntity<?> publish(@Valid @RequestBody PublishMessageDTO publishMessageDto) throws MqttPersistenceException, MqttException {
 
@@ -56,9 +54,8 @@ public class MqttMessageController {
 
     }
 
-    @Operation(summary = "Se utiliza para enviar mensajes mqtt a los dispositivos y obtener una respuesta",
-               description = "<p>Los mensajes constan de una accion y un valor.</p>"
-                       )
+    @Operation(description = "<p>Los mensajes constan de una accion y un valor.</p>")
+    @ApiOperation(httpMethod = "POST", value = "Se utiliza para enviar mensajes mqtt a los dispositivos y obtener una respuesta")
     @PostMapping("/client/mqtt")
     public ResponseEntity<?> control(@RequestParam @Parameter(name = "deviceId", description = "Id del dispositivo a consultar") Long deviceId,
                                      @RequestParam @Parameter(name = "action", description = "<p><b>STATE :</b> Solicita al dispositivo que informe el estado en que se encuentra (no necesita payload)</p>" +
