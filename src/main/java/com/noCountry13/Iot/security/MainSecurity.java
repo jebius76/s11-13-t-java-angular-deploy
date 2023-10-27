@@ -76,7 +76,7 @@ public class MainSecurity extends WebSecurityConfigurerAdapter {
 	CorsConfigurationSource corsConfigurationSource()
 	{
 		CorsConfiguration configuration = new CorsConfiguration();
-		configuration.setAllowedOriginPatterns(List.of("https://18lxskjb-4200.use2.devtunnels.ms/", "http://localhost:3000", "http://localhost:4200", "https://iot-jebius.koyeb.app:443"));
+		configuration.setAllowedOriginPatterns(List.of("https://pockethouse.vercel.app/", "https://18lxskjb-4200.use2.devtunnels.ms/", "http://localhost:3000", "http://localhost:4200", "https://iot-jebius.koyeb.app:443"));
 		configuration.setAllowedMethods(List.of("GET", "POST", "OPTIONS", "DELETE", "PUT", "PATCH"));
 		configuration.setAllowedHeaders(List.of("Access-Control-Allow-Origin", "X-Requested-With", "Origin", "Content-Type", "Accept", "accept", "Authorization", "Vary", "Access-Control-Allow-Credentials", "Access-Control-Expose-Headers"));
 		configuration.setAllowCredentials(true);
