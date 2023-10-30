@@ -28,6 +28,8 @@ public class Usuario {
 		@NotNull
 		private String password;
 		private String topic;
+
+		private String image;
 		@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
 		@JoinColumn(name = "client_id")
 		private List<House> houses;
@@ -52,12 +54,14 @@ public class Usuario {
 					   @NotNull String nombreUsuario,
 					   @NotNull String email,
 					   @NotNull String password,
-					   String topic) {
+					   String topic,
+					   String image) {
 			this.nombre = nombre;
 			this.nombreUsuario = nombreUsuario;
 			this.email = email;
 			this.password = password;
 			this.topic = topic;
+			this.image = image;
 		}
 
 
@@ -89,7 +93,15 @@ public class Usuario {
 			return nombre;
 		}
 
-		public void setNombre(String nombre) {
+		public String getImage() {
+		return image;
+		}
+
+		public void setImage(String image) {
+		this.image = image;
+		}
+
+	public void setNombre(String nombre) {
 			this.nombre = nombre;
 		}
 

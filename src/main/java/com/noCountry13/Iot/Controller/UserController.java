@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("api/v1/client")
 @AllArgsConstructor
@@ -25,6 +27,13 @@ public class UserController {
     public Usuario findByAuthUser (){
 
         return userService.findByAuthUser(jwtProvider.getAuthUserName());
+
+    }
+
+    @GetMapping("/list")
+    public List<Usuario> findAllClients (){
+
+        return userService.findAllClients();
 
     }
 

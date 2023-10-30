@@ -17,6 +17,7 @@ public class NuevoUsuario {
 
 	private String topic;
 
+	private String image;
 	public String getTopic() {
 		return topic;
 	}
@@ -37,6 +38,14 @@ public class NuevoUsuario {
 
 	public String getNameUser() {
 		return nameUser;
+	}
+
+	public String getImage() {
+		return image;
+	}
+
+	public void setImage(String image) {
+		this.image = image;
 	}
 
 	public void setNameUser(String nameUser) {

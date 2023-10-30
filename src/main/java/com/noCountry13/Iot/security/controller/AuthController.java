@@ -56,7 +56,7 @@ public class AuthController {
 		}
 
 		Usuario usuario = new Usuario(nuevoUsuario.getName(), nuevoUsuario.getNameUser(),
-				nuevoUsuario.getEmail(), passwordEncoder.encode(nuevoUsuario.getPassword()), nuevoUsuario.getTopic());
+				nuevoUsuario.getEmail(), passwordEncoder.encode(nuevoUsuario.getPassword()), nuevoUsuario.getTopic(), nuevoUsuario.getImage());
 
 		Set<Rol> roles = new HashSet<>();
 		roles.add(rolService.getByRolNombre(RolNombre.ROLE_USER).orElseThrow());
