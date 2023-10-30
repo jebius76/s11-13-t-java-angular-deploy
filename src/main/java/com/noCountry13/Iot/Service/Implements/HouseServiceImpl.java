@@ -1,5 +1,6 @@
 package com.noCountry13.Iot.Service.Implements;
 
+import com.noCountry13.Iot.Model.Entity.Device;
 import com.noCountry13.Iot.Model.Entity.Dto.HouseDto;
 import com.noCountry13.Iot.Model.Entity.Dto.EnvironmentDto;
 import com.noCountry13.Iot.Model.Entity.House;
@@ -58,4 +59,14 @@ public class HouseServiceImpl implements IHouseService {
         return houseRepository.findById(id)
                 .orElseThrow(() -> new IllegalStateException("No se encontró la casa con ID " + id));
     }
+
+    @Override
+    public House addDevice(Device device, Long id) {
+        House houseById = houseRepository.findById(id)
+                .orElseThrow(() -> new IllegalStateException("No se encontró la casa con ID " + id));;
+        houseById.getDevices().add(device);
+        houseRepository.save(houseById);
+        return houseById;
+    }
+
 }

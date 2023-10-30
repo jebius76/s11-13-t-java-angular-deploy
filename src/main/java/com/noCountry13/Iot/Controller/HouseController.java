@@ -1,10 +1,12 @@
-package com.noCountry13.Iot.controller;
-import com.noCountry13.Iot.Model.Entity.Environment;
+package com.noCountry13.Iot.Controller;
+
+import com.noCountry13.Iot.Model.Entity.Device;
 import com.noCountry13.Iot.Service.Implements.HouseServiceImpl;
 import com.noCountry13.Iot.security.util.Mensaje;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import com.noCountry13.Iot.Model.Entity.House;
 import com.noCountry13.Iot.Model.Entity.Dto.HouseDto;
@@ -52,5 +54,33 @@ public class HouseController {
     public ResponseEntity<?> deleteHouse(@PathVariable Long id) {
         houseService.delete(id);
         return new ResponseEntity<>( "eliminado", HttpStatus.OK);
+    }
+
+    //Agregar un dispositivo
+    @PutMapping("/addDevice/{id}")
+    @Transactional
+    public ResponseEntity<?> addDevice(@PathVariable Long id, @RequestBody @Valid Device device) {
+        try {
+            if (houseService.findById(id) != null) {
+                return new ResponseEntity(houseService.addDevice(device, id), HttpStatus.OK);
+            }
+            return new ResponseEntity<>(new Mensaje("Casa no encontrada"), HttpStatus.NOT_FOUND);
+        } catch (Exception e) {
+            return new ResponseEntity<>(new Mensaje(e.getMessage()), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    //Lista de dispositivos por casa
+    @GetMapping("/devicesByHouse/{id}")
+    public ResponseEntity<?> devicesByHouseId(@PathVariable Long id){
+        try{
+            House houseById = houseService.findById(id);
+            if(houseById != null){
+                return new ResponseEntity<>(houseById.getDevices(), HttpStatus.OK);
+            }
+            return new ResponseEntity<>(new Mensaje("Casa no encontrada"), HttpStatus.NOT_FOUND);
+        }catch (Exception e){
+            return new ResponseEntity<>(new Mensaje(e.getMessage()), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 }

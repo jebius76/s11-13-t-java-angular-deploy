@@ -22,5 +22,9 @@ public class House {
     @JoinColumn(name = "house_id")
     private List<Environment> environments;
     private String subtopic;
+
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "house_id")
+    private List<Device> devices;
 }
 
