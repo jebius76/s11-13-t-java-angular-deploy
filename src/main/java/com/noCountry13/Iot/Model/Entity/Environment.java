@@ -2,6 +2,7 @@ package com.noCountry13.Iot.Model.Entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
