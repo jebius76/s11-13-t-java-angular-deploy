@@ -38,9 +38,9 @@ public class Environment {
     @JoinColumn(name = "environment_id")
     private List<Device> devices;
 
-    public Environment(String name, String description, String subTopic) {
-        this.name = name;
-        this.description = description;
-        this.subTopic = subTopic;
-    }
+//    public Environment(String name, String description, String subTopic) {
+//        this.name = name;
+//        this.description = description;
+//        this.subTopic = subTopic;
+//    }
 }
