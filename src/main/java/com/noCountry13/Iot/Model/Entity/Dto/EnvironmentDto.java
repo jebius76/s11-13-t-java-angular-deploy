@@ -20,17 +20,17 @@ public class EnvironmentDto {
     private String description;
     @NotBlank
     private String subTopic;
-    private List<Device> devices;
+    private List<DeviceDto> devices;
 
-    public EnvironmentDto(String name, String description, String subTopic, Device device) {
-        this.name = name;
-        this.description = description;
-        this.subTopic = subTopic;
-        this.devices.add(device);
-    }
-    public EnvironmentDto(String name, String description, String subTopic) {
-        this.name = name;
-        this.description = description;
-        this.subTopic = subTopic;
-    }
+//    public EnvironmentDto(String name, String description, String subTopic, Device device) {
+//       this.name = name;
+//        this.description = description;
+//        this.subTopic = subTopic;
+//        this.devices.add(device);
+//    }
+//    public EnvironmentDto(String name, String description, String subTopic) {
+//        this.name = name;
+//        this.description = description;
+//        this.subTopic = subTopic;
+//    }
 }
