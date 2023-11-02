@@ -15,6 +15,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
+@Data
 public class Environment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
