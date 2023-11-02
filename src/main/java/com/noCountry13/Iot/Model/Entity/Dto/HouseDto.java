@@ -19,5 +19,6 @@ public class HouseDto {
     private String description;
     @NotBlank(message = "subtopic not by empty")
     private String subtopic;
+    private List<Environment> environments;
 }
 
